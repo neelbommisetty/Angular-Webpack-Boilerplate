@@ -1,0 +1,15 @@
+{
+  "presets": ["es2015","latest","stage-0"],
+  "env": {
+    "development": {
+      "plugins": [
+        ["transform-object-rest-spread"]
+      ]
+    },
+    "production": {
+      "plugins": [
+        ["transform-object-rest-spread"]
+      ]
+    }
+  }
+}
