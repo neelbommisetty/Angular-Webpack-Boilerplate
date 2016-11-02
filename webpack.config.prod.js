@@ -1,28 +1,56 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
   devServer: {
     port: 3000,
-    contentBase: '/build/',
-    stats: 'minimal'
+    contentBase: 'build/',
+    stats: 'minimal',
   },
   entry: [
     './src/app.js',
   ],
   output: {
     path: path.join(__dirname, 'build'),
-    filename: 'bundle.js',
-    publicPath: 'http://localhost:3000/',
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].chunk.js',
+    publicPath: path.join(__dirname,'build'),
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
-    new HtmlWebpackPlugin({
-      inject: true,
-      template: 'index.html',
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      children: true,
+      minChunks: 2,
+      async: true,
     }),
+    new webpack.optimize.OccurrenceOrderPlugin(true),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      }
+    }),
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
+      inject: true,
+    }),
+    new ExtractTextPlugin('[name].[contenthash].css'),
   ],
   module: {
     loaders: [
@@ -30,6 +58,7 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['ng-annotate','babel'],
+        exclude: 'node_modules',
         include: path.join(__dirname, 'src/'),
       },
       // CSS

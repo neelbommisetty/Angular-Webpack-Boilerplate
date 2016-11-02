@@ -1,4 +1,5 @@
 import angular from 'angular';
 import TestController from './controllers/testController';
-
-angular.module('app',[]).controller('testController',TestController);
+TestController.$inject = ['$scope'];
+angular.module('app',[]).controller('TestController',TestController);
+angular.bootstrap(document, ['app']);

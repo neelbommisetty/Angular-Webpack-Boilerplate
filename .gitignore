@@ -2,5 +2,7 @@ node_modules
 npm-debug.log*
 .npm
 
-# build folder later
-dist/
+# build folder
+build/
+
+yarn-error.log*

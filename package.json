@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "server": "webpack-dev-server --history-api-fallback --inline --progress",
-    "start": "npm run server"
+    "start": "npm run server",
+    "prod": "rimraf build && webpack --config webpack.config.prod.js  --color -p"
   },
   "author": "Neel Bommisetty",
   "license": "ISC",
@@ -19,9 +20,14 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
+    "html-loader": "^0.4.4",
+    "html-webpack-plugin": "^2.24.1",
     "image-webpack-loader": "^3.0.0",
     "json-loader": "^0.5.4",
+    "ng-annotate-loader": "^0.2.0",
+    "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
