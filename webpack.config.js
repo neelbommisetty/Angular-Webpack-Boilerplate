@@ -4,17 +4,17 @@ const webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   devServer: {
-    host: "127.0.0.1",
     port: 3000,
+    contentBase: 'build/',
     stats: 'minimal'
   },
   entry: [
-    './client/app',
+    './src/app.js',
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/dist/',
+    publicPath: '/build/',
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
@@ -25,12 +25,12 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel'],
-        include: path.join(__dirname, 'client'),
+        include: path.join(__dirname, 'src/'),
       },
       // CSS
       {
         test: /\.css$/,
-        include: path.join(__dirname, 'client'),
+        include: path.join(__dirname, 'src/'),
         loader: 'style-loader!css-loader',
       },
       {
