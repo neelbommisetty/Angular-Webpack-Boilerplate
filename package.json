@@ -2,16 +2,34 @@
   "name": "angular-webpack",
   "version": "1.0.0",
   "description": "a boilerplate for using angular with webpack",
-  "main": "index.js",
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "scripts": {
     "server": "webpack-dev-server --history-api-fallback --inline --progress",
     "start": "npm run server",
     "prod": "rimraf build && webpack --config webpack.config.prod.js  --color -p"
   },
   "author": "Neel Bommisetty",
-  "license": "ISC",
+  "eslintConfig": {
+    "extends": [
+      "airbnb-base",
+      "angular"
+    ],
+    "env": {
+      "es6": true,
+      "browser": true,
+      "jasmine": true,
+      "node": true
+    }
+  },
+  "license": "MIT",
   "dependencies": {
-    "angular": "^1.5.8"
+    "angular": "^1.5.8",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^2.24.1",
+    "sass": "^0.5.0",
+    "webpack": "^1.13.3"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",
@@ -20,17 +38,22 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "css-loader": "^0.25.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "eslint": "^3.9.1",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-config-angular": "^0.5.0",
+    "eslint-plugin-angular": "^1.4.1",
+    "eslint-plugin-import": "^2.2.0",
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.4",
-    "html-webpack-plugin": "^2.24.1",
     "image-webpack-loader": "^3.0.0",
     "json-loader": "^0.5.4",
     "ng-annotate-loader": "^0.2.0",
+    "node-sass": "^3.11.2",
     "rimraf": "^2.5.4",
+    "sass-lint": "^1.10.2",
+    "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   }
 }
