@@ -4,12 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  devtool: 'source-map',
-  devServer: {
-    port: 3000,
-    contentBase: 'build/',
-    stats: 'minimal',
-  },
   entry: [
     './src/app.js',
   ],
@@ -17,7 +11,7 @@ module.exports = {
     path: path.join(__dirname, 'build'),
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].chunk.js',
-    publicPath: path.join(__dirname,'build'),
+    publicPath: path.join(__dirname, 'build'),
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
@@ -32,7 +26,7 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
-      }
+      },
     }),
     new HtmlWebpackPlugin({
       template: 'index.html',
@@ -57,13 +51,13 @@ module.exports = {
     // js
       {
         test: /\.js$/,
-        loaders: ['ng-annotate','babel'],
+        loaders: ['ng-annotate', 'babel'],
         exclude: 'node_modules',
         include: path.join(__dirname, 'src/'),
       },
       // CSS
       {
-        test: /\.css$/,
+        test: /\.s[c|a]ss$/,
         include: path.join(__dirname, 'src/'),
         loader: 'style-loader!css-loader',
       },

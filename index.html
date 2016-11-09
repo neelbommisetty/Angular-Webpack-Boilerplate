@@ -7,8 +7,8 @@
   <title>Angular webpack</title>
 </head>
 <body>
-<div ng-controller="TestController">
-  {{greeting}}
+<div ng-controller="TestController as test">
+  <h1>{{test.greeting}}</h1>
 </div>
 </body>
 </html>

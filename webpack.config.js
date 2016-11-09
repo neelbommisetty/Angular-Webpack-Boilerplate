@@ -7,7 +7,7 @@ module.exports = {
   devServer: {
     port: 3000,
     contentBase: '/build/',
-    stats: 'minimal'
+    stats: 'minimal',
   },
   entry: [
     './src/app.js',
@@ -29,14 +29,14 @@ module.exports = {
     // js
       {
         test: /\.js$/,
-        loaders: ['ng-annotate','babel'],
+        loaders: ['ng-annotate', 'babel'],
         include: path.join(__dirname, 'src/'),
       },
       // CSS
       {
-        test: /\.css$/,
+        test: /\.s[c|a]ss$/,
         include: path.join(__dirname, 'src/'),
-        loader: 'style-loader!css-loader',
+        loader: 'style-loader!css-loader!sass-loader',
       },
       {
         // Do not transform vendor's CSS with CSS-modules

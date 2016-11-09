@@ -1,4 +1,15 @@
-# Installation
+# Angular Boilerplate code
+
+This is boilerplate code to start any angular project of yours.
+
+## Features
+### Latest Javascript Standard Enabled
+  Use template strings, object destructuring, arrow functions and more, today.
+
+### Eslint enabled
+  Best coding standards using airbnb eslint plugin providing instant feedback.
+
+## Installation
 ```sh
 # clone the repo
 git clone https://github.com/neelbommisetty/Angular-Webpack-Boilerplate myApp
@@ -17,9 +28,9 @@ yarn prod
 ```
 
 # Tips
-* For including css you can just import with es6 import syntax , webpack understands it.
+* For including css or sass files you can just import with es6 import syntax , webpack understands it.
 ```javascript
-import '../styles/style.css';
+import '../styles/style.scss';
 ```
 * For including html templates incase of directives or routes , you have use commonJS require syntax.
 ```javascript

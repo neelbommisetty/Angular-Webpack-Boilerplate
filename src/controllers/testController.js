@@ -1,5 +1,6 @@
-const TestController = ($scope) => {
-  const name = 'Work';
-  $scope.greeting = `Hi My Name is ${name}`;
+class TestController {
+  constructor() {
+    this.greeting = 'Hello world !!';
+  }
 }
 export default TestController;
