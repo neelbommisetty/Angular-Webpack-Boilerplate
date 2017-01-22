@@ -1,6 +1,22 @@
 import angular from 'angular';
-import TestController from './controllers/testController';
+import uirouter from 'angular-ui-router';
+import ngSanitize from 'angular-sanitize';
+import ngAnimate from 'angular-animate';
+
+import homeModule from './home';
 import './app.scss';
 
-angular.module('app', []).controller('TestController', TestController);
+angular.module('app', [
+  uirouter,
+  ngSanitize,
+  ngAnimate,
+  homeModule,
+]).config(($locationProvider) => {
+  'ngInject';
+
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false,
+  }).hashPrefix('!');
+});
 angular.bootstrap(document, ['app']);

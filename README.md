@@ -16,13 +16,16 @@ git clone https://github.com/neelbommisetty/Angular-Webpack-Boilerplate myApp
 
 cd myApp
 
-#install all dependencies
-yarn
+# Install all dependencies
+yarn install
 
-#to start dev server
+# To start dev server
 yarn start
 
-#to start build prod
+# To make production build
+yarn build
+
+# To start production server
 yarn prod
 
 ```

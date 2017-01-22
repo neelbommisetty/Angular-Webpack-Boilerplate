@@ -1,3 +1,40 @@
-h1 {
-  font-size: 2em;
+body {
+  padding: 10px;
+  background-color: #fff;
+  font-family: sans-serif;
+  overflow-x: hidden;
+}
+
+.rootView {
+  transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  height: 100vh;
+  margin: 0 5%;
+}
+
+.rootView.ng-enter, .rootView.ng-leave {
+    transition: opacity 0.4s ease-in-out;
+}
+
+.rootView.ng-enter {
+    opacity: 0;
+}
+
+.rootView.ng-enter-active {
+    opacity: 1;
+}
+
+.rootView.ng-leave {
+    opacity: 1;
+}
+
+.rootView.ng-leave-active {
+    opacity: 0;
+}
+
+a,a:visited,a:hover {
+  color:black;
+  text-decoration: underline;
 }
