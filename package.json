@@ -1,57 +1,85 @@
 {
   "name": "angular-webpack",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "a boilerplate for using angular with webpack",
   "engines": {
     "node": ">=6.0.0"
   },
   "scripts": {
-    "server": "webpack-dev-server --history-api-fallback --inline --progress",
-    "start": "npm run server",
-    "prod": "rimraf build && webpack --config webpack.config.prod.js  --color -p"
+    "dev": "webpack-dev-server --history-api-fallback --inline --progress",
+    "start": "yarn dev",
+    "build": "rimraf build && webpack --config webpack.config.prod.js  --color -p",
+    "prod": "yarn build && node server.js"
   },
   "author": "Neel Bommisetty",
   "eslintConfig": {
-    "extends": [
-      "airbnb-base",
-      "angular"
-    ],
+    "extends": "airbnb-base",
     "env": {
       "es6": true,
       "browser": true,
       "jasmine": true,
       "node": true
+    },
+    "plugins": [
+      "angular"
+    ],
+    "rules": {
+      "arrow-parens": [
+        "error",
+        "always"
+      ],
+      "import/no-unresolved": 1,
+      "global-require": 0,
+      "prefer-template": 1,
+      "max-len": [
+        "error",
+        80
+      ],
+      "no-use-before-define": 0,
+      "new-cap": 0,
+      "no-param-reassign": 1,
+      "no-nested-ternary": 1,
+      "import/no-extraneous-dependencies": 0
+    },
+    "globals": {
+      "angular": true
     }
   },
   "license": "MIT",
   "dependencies": {
-    "angular": "^1.5.8",
+    "angular": "^1.6.1",
+    "angular-animate": "^1.6.1",
+    "angular-sanitize": "^1.6.1",
+    "angular-ui-router": "^0.4.2",
+    "express": "^4.14.0",
     "extract-text-webpack-plugin": "^1.0.1",
-    "html-webpack-plugin": "^2.24.1",
+    "font-awesome": "^4.7.0",
+    "html-webpack-plugin": "^2.26.0",
     "sass": "^0.5.0",
-    "webpack": "^1.13.3"
+    "webpack": "1.14.0"
   },
   "devDependencies": {
-    "babel-core": "^6.18.2",
-    "babel-loader": "^6.2.7",
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
     "babel-plugin-object-rest-spread": "^0.0.0",
-    "babel-preset-latest": "^6.16.0",
-    "babel-preset-stage-0": "^6.16.0",
-    "css-loader": "^0.25.0",
-    "eslint": "^3.9.1",
-    "eslint-config-airbnb-base": "^10.0.1",
+    "babel-preset-latest": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "css-loader": "^0.26.1",
+    "eslint": "^3.14.0",
+    "eslint-config-airbnb-base": "^11.0.1",
     "eslint-config-angular": "^0.5.0",
-    "eslint-plugin-angular": "^1.4.1",
+    "eslint-plugin-angular": "^1.6.1",
     "eslint-plugin-import": "^2.2.0",
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.4",
-    "image-webpack-loader": "^3.0.0",
+    "image-webpack-loader": "^3.1.0",
     "json-loader": "^0.5.4",
     "ng-annotate-loader": "^0.2.0",
-    "node-sass": "^3.11.2",
+    "ng-annotate-webpack-plugin": "^0.2.1-pre",
+    "node-sass": "^4.3.0",
     "rimraf": "^2.5.4",
     "sass-lint": "^1.10.2",
-    "sass-loader": "^4.0.2",
+    "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack-dev-server": "^1.16.2"

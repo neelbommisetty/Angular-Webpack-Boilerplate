@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const NgAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -9,17 +10,21 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'build'),
-    filename: '[name].[chunkhash].js',
+    filename: '[name].[chunkhash].min.js',
     chunkFilename: '[name].[chunkhash].chunk.js',
-    publicPath: path.join(__dirname, 'build'),
+    publicPath: '/build/',
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       children: true,
-      minChunks: 2,
+      minChunks: (module) => module.resource &&
+        module.resource.indexOf(path.resolve(__dirname, 'src')) === -1,
       async: true,
+    }),
+    new NgAnnotatePlugin({
+      add: true,
     }),
     new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.optimize.DedupePlugin(),
@@ -44,7 +49,8 @@ module.exports = {
       },
       inject: true,
     }),
-    new ExtractTextPlugin('[name].[contenthash].css'),
+    new ExtractTextPlugin('[name].[contenthash].min.css'),
+    new webpack.PrefetchPlugin('angular'),
   ],
   module: {
     loaders: [
@@ -52,32 +58,34 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['ng-annotate', 'babel'],
-        exclude: 'node_modules',
         include: path.join(__dirname, 'src/'),
       },
-      // CSS
+      // sass
       {
         test: /\.s[c|a]ss$/,
         include: path.join(__dirname, 'src/'),
-        loader: 'style-loader!css-loader',
+        loader: ExtractTextPlugin
+          .extract('style-loader', 'css-loader!sass-loader'),
+      },
+      // css
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin
+        .extract('style-loader', 'css-loader'),
       },
       {
-        // Do not transform vendor's CSS with CSS-modules
-        // The point is that they remain in global scope.
-        // Since we require these CSS files in our JS or CSS files,
-        // they will be a part of our compilation either way.
-        // So, no need for ExtractTextPlugin here.
-        test: /\.css$/,
-        include: /node_modules/,
-        loaders: ['style-loader', 'css-loader'],
-      }, {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: 'file-loader',
-      }, {
         test: /\.(jpg|png|gif)$/,
         loaders: [
           'file-loader',
-          'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
+          `image-webpack?{
+            progressive:true,
+            optimizationLevel: 7,
+            interlaced: false,
+            pngquant:{
+                quality: "65-90",
+                speed: 4
+              }
+            }`,
         ],
       }, {
         test: /\.html$/,
@@ -88,6 +96,28 @@ module.exports = {
       }, {
         test: /\.(mp4|webm)$/,
         loader: 'url-loader?limit=10000',
+      },
+
+      // font awesome
+      {
+        test: /\.woff(\?v=\d+\.\d+\.\d+|\?.*)?$/,
+        loader: 'url?limit=10000&mimetype=application/font-woff',
+      },
+      {
+        test: /\.woff2(\?v=\d+\.\d+\.\d+|\?.*)?$/,
+        loader: 'url?limit=10000&mimetype=application/font-woff',
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+|\?.*)?$/,
+        loader: 'url?limit=10000&mimetype=application/octet-stream',
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+|\?.*)?$/,
+        loader: 'file',
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+|\?.*)?$/,
+        loader: 'url?limit=10000&mimetype=image/svg+xml',
       },
     ],
   },
