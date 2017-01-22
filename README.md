@@ -1,14 +1,19 @@
 # Angular Boilerplate code
-
 This is boilerplate code to start any angular project of yours.
 
+![alt](https://david-dm.org/neelbommisetty/angular-webpack-boilerplate.svg)
+![alt](https://david-dm.org/neelbommisetty/angular-webpack-boilerplate/dev-status.svg)
 ## Features
 ### Latest Javascript Standard Enabled
   Use template strings, object destructuring, arrow functions and more, today.
-
 ### Eslint enabled
   Best coding standards using airbnb eslint plugin providing instant feedback.
-
+### Sass Enabled
+ Sass is the most used css preprocessor. You can use sass by default with this boilerplate.
+### Routing
+  Routing is basic requirement for any webapp.So it is now included in the boilerplate.
+### Icon support
+ Added font-awesome icon support , You can use them by default in your templates.
 ## Installation
 ```sh
 # clone the repo
@@ -17,7 +22,7 @@ git clone https://github.com/neelbommisetty/Angular-Webpack-Boilerplate myApp
 cd myApp
 
 # Install all dependencies
-yarn install
+yarn
 
 # To start dev server
 yarn start
@@ -30,7 +35,7 @@ yarn prod
 
 ```
 
-# Tips
+## Tips
 * For including css or sass files you can just import with es6 import syntax , webpack understands it.
 ```javascript
 import '../styles/style.scss';

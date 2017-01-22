@@ -3,6 +3,8 @@ import uirouter from 'angular-ui-router';
 import ngSanitize from 'angular-sanitize';
 import ngAnimate from 'angular-animate';
 
+import 'font-awesome/css/font-awesome.css';
+
 import homeModule from './home';
 import './app.scss';
 
