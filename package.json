@@ -76,7 +76,7 @@
     "json-loader": "^0.5.4",
     "ng-annotate-loader": "^0.2.0",
     "ng-annotate-webpack-plugin": "^0.2.1-pre",
-    "node-sass": "^4.3.0",
+    "node-sass": "^4.13.1",
     "rimraf": "^2.5.4",
     "sass-lint": "^1.10.2",
     "sass-loader": "^4.1.1",
